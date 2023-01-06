@@ -188,10 +188,18 @@ returncode=$?
 echo "DDInterface return code: " $returncode
 
 ls
-echo "look at outputs"
+
+echo "look at env -----------"
+
+env
+
+echo "look at json-----------"
+cat *root*json
+
+echo "look at outputs-----------"
 cat *.out
 
-echo "look at error"
+echo "look at error----------"
 cat *.err
 echo " make output directories"
 export IFDH_DEBUG=0

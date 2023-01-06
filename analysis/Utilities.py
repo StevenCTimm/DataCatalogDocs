@@ -68,6 +68,14 @@ def getListOfTypes(data,key,inlist):
   sl = sorted(l)
   return sl
 
+def getMapOfTypes(inlist):
+    r = {}
+    count = 1
+    for l in inlist:
+        r[l]= count
+        count +=1
+    return r
+
 
 def shortdisk(disk):
     if "manchester" in disk:
@@ -106,9 +114,7 @@ def setYLabels(h,labels):
 def setXLabels(h,labels):
   for bin in labels:
     h.GetXaxis().SetBinLabel(labels[bin], bin);
-    if len(labels) > 6:
-      h.GetXaxis().LabelsOption("v");
-
+   
 def setXYLabels(h,x,y):
   setXLabels(h,x)
   setYLabels(h,y)

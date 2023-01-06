@@ -13,3 +13,5 @@ metacat query "files from dune:all where namespace='pdsp_mc_reco' and core.file_
 metacat query  "files from dune:all where namespace='pdsp_mc_reco' and core.file_type=mc and core.data_tier='full-reconstructed' and DUNE.campaign=PDSPProd4a and MC.space_charge=yes"
 
 metacat dataset create -f "files from dune:all where namespace='pdsp_mc_reco' and core.file_type=mc and core.data_tier='full-reconstructed' and DUNE.campaign=PDSPProd4a and MC.space_charge=yes" schellma:PDSPProd4a_mc_1GeV_sce  "files from dune:all where namespace='pdsp_mc_reco' and core.file_type=mc and core.data_tier='full-reconstructed' and DUNE.campaign=PDSPProd4a and MC.space_charge=yes"
+
+"files from dune:all with DUNE.campaign PDSPProd4a and code.data_tier 'full-reconstructed' ordered with limit 200"

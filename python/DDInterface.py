@@ -198,8 +198,8 @@ class DDInterface:
     print ("ask for next file")
     if "GLIDEIN_DUNESite" in os.environ:
         site = os.getenv("GLIDEIN_DUNESite")
-    elif "HOSTNAME" in os.environ:
-        site = os.getenv("HOSTNAME")
+    elif "HOSTNAME" in os.environ and "dunegpvm" in os.getenv("HOSTNAME"):
+        site = "US_FNAL"
     else:
         site = None
 
@@ -392,17 +392,32 @@ class DDInterface:
   def BuildFileListString(self):
     for j in self.loaded_files:
       replicas = list(j['replicas'].values())
-      print ("possible replicas",replicas)
+      if self.debug:
+          print ("possible replicas")
+          for r in replicas:
+              print (r)
       if len(replicas) > 0:
         #Get the last replica
         #replica = replicas[len(replicas)-1]
-        replica = replicas[0] # go with first.
-        self.input_replicas.append(replica)
-        print('Replica:', replica)
-        uri = replica['url']
-        if 'https://eospublic.cern.ch/e' in uri: uri = uri.replace('https://eospublic.cern.ch/e', 'xroot://eospublic.cern.ch//e')
-        self.lar_file_list += uri
-        self.lar_file_list += ' '
+        replica = None
+        for r in replicas:
+            if "url" in r and "root:" in r["url"]:
+                # if self.debug and r["rse"] == "FNAL_DCACHE":
+                #     print  ("skipping FNAL for test")
+                #     continue
+                print ("found a valid replica at",r["url"])
+                replica = r
+                break
+        if replica == None:
+            print (" there is no root replica available",r["name"])
+        else:
+            self.input_replicas.append(replica)
+            print('Replica:', replica)
+            uri = replica['url']
+            if 'https://eospublic.cern.ch/e' in uri: uri = uri.replace('https://eospublic.cern.ch/e', 'xroot://eospublic.cern.ch//e')
+            print ("\n found uri",uri,"\n")
+            self.lar_file_list += uri
+            self.lar_file_list += ' '
       else:
         print('Empty replicas -- marking as failed')
 

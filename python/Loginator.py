@@ -200,6 +200,7 @@ class Loginator:
                 timestamp = data[0].strip()
                 filename = os.path.basename(filefull).strip()
                 filepath = os.path.dirname(filefull).strip()
+
                 dups = 0
 
                 # start - ask for file
@@ -210,6 +211,7 @@ class Loginator:
                     localobject["final_state"] = "Requested"
                     localobject["path"]=filepath
                     localobject["file_name"] = filename
+                    localobject["url"] = filefull
                     if "BEGIN_TIME" in os.environ:
                         localobject["timestamp_for_job_start"]=os.getenv("BEGIN_TIME")
                     else:
@@ -312,7 +314,7 @@ class Loginator:
         """add file information from metacat to the record
         the defaultNamespace argument is just there for testing
         """
-
+        if self.debug:print ("add metacat info")
         os.environ["METACAT_SERVER_URL"]="https://metacat.fnal.gov:9443/dune_meta_demo/app"
         mc_client = MetaCatClient('https://metacat.fnal.gov:9443/dune_meta_demo/app')
         for f in self.outobject:
@@ -351,15 +353,18 @@ class Loginator:
         :return: list of file did's that were in the replicas list but not found in the parsed logs
         :rtype: [str]
         """
-
+        if self.debug:  print (" add replica info")
         notfound = []
         for f in self.outobject:
             self.outobject[f]["rse"] = None
 
         for r in replicas:
             found = False
+            fullpath = r["url"]
             for f in self.outobject:
-                if f == r["name"]:
+                fpath = os.path.join(self.outobject[f]["path"],f)
+                if self.debug: print ("RSECHECK1",fullpath,"\nRSECHECK2",fpath)
+                if fullpath == fpath:
                     if self.debug: print ("replica match",r)
                     if self.outobject[f]["final_state"] in ["Closed"]:
                         found = True
@@ -380,10 +385,11 @@ class Loginator:
         """ dump info to json file """
         result = []
         for thing in self.outobject:
-            if self.debug: print (thing,self.outobject[thing])
+            if self.debug: print ("writeme", thing,self.outobject[thing])
             outname = "%s_%d_process.json" %(thing,self.outobject[thing]["project_id"])
             outfile = open(outname,'w')
             json.dump(self.outobject[thing],outfile,indent=4)
+
             outfile.close()
             result.append(outname)
         return result
