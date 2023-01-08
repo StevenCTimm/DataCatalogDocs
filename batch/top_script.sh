@@ -189,9 +189,9 @@ echo "DDInterface return code: " $returncode
 
 ls
 
-echo "look at env -----------"
+echo "look at env disabled -----------"
 
-env
+#env
 
 echo "look at json-----------"
 cat *root*json
@@ -204,10 +204,19 @@ cat *.err
 echo " make output directories"
 export IFDH_DEBUG=0
 export SCRATCH_DIR=/pnfs/dune/scratch/users
-#setup ifdh
+setup ifdhc # add this back in
 export OUTDIR=${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}.${PROCESS}
 #ifdh mkdir_p ${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}
-ifdh mkdir_p ${OUTDIR}
+echo "---------"
+echo "gfal?"
+echo "which gfal-mkdir"
+which gfal-mkdir
+echo "---------"
+echo "ls /usr/lib64/gfal_plugins"
+ls /usr/lib64/gfal_plugins
+echo "---------"
+echo "then mkdir"
+ifdh mkdir ${OUTDIR}
 
 #if [ $? -ne 0 &&- z "$IFDH_OPTION"]; then
 #    echo "Unable to read ${SCRATCH_DIR}/${USER}/ddtest make sure that you have created this directory and given it group write permission."
@@ -228,9 +237,9 @@ ifdh cp -D $IFDH_OPTION *.err ${OUTDIR}
 ifdh cp -D $IFDH_OPTION *.fcl ${OUTDIR}
 #fi
 )
-echo "Site: $GLIDEIN_DUNESite" #>> ${logname}.out
+echo "Site:" $GLIDEIN_DUNESite #>> ${logname}.out
 
-if [ $returncode -ne 0 ]; then
+if [[ $returncode -ne 0 ]]; then
   exit $returncode
 fi
 

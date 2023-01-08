@@ -107,6 +107,8 @@ class LArWrapper:
         # useful for dd
          self.formatString = formatString
          self.replicas = replicas
+         if processHASH == None and "MYWORKERID" in os.environ:
+             processHASH = os.environ["MYWORKERID"]
          self.processHASH = processHASH
 
         ## the format string is used to create an output file name for stdout and err
@@ -235,7 +237,7 @@ class LArWrapper:
         print (args)
 
         if args.processHASH == None and "MYWORKERID" in os.environ:
-            args.processHASH = os.environ("MYWORKERID")
+            args.processHASH = os.environ["MYWORKERID"]
         lar = LArWrapper(fcl=args.c, n=args.n, nskip = args.nskip, appFamily=args.appFamily,appName=args.appName,
         appVersion=os.getenv("DUNESW_VERSION"), deliveryMethod=args.delivery_method, workflowMethod=args.workflow_method,
         processID = args.processID, processHASH = args.processHASH, projectID=args.projectID, sam_web_uri = args.sam_web_uri,

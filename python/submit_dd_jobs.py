@@ -56,7 +56,10 @@ def create_project(dataset=None, query=None, namespace = None, query_limit=None,
   proj_dict = dd_client.create_project(files=query_files, query=thequery, idle_timeout=259201)
   if debug: print("project dictionary",proj_dict)
   dd_proj_id = proj_dict['project_id']
+  #outdir = os.path.join("/pnfs/dune/scratch/users/",os.environ["USER"],"/%d"%dd_proj_id)
   print('Project ID:', dd_proj_id)
+  #print("output directory",outdir)
+  #os.mkdir(outdir)
 
   return dd_proj_id
 

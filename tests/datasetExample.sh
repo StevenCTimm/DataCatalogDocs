@@ -15,3 +15,5 @@ metacat query  "files from dune:all where namespace='pdsp_mc_reco' and core.file
 metacat dataset create -f "files from dune:all where namespace='pdsp_mc_reco' and core.file_type=mc and core.data_tier='full-reconstructed' and DUNE.campaign=PDSPProd4a and MC.space_charge=yes" schellma:PDSPProd4a_mc_1GeV_sce  "files from dune:all where namespace='pdsp_mc_reco' and core.file_type=mc and core.data_tier='full-reconstructed' and DUNE.campaign=PDSPProd4a and MC.space_charge=yes"
 
 "files from dune:all with DUNE.campaign PDSPProd4a and code.data_tier 'full-reconstructed' ordered with limit 200"
+
+metacat dataset create -f "files from dune:all where core.run_type=protodune-sp and core.data_tier=full-reconstructed and core.data_stream=physics and DUNE.campaign=PDSPProd4 and core.first_event_number < 200 " schellma:EarlyPhysicsFiles2

@@ -402,9 +402,9 @@ class DDInterface:
         replica = None
         for r in replicas:
             if "url" in r and "root:" in r["url"]:
-                # if self.debug and r["rse"] == "FNAL_DCACHE":
-                #     print  ("skipping FNAL for test")
-                #     continue
+                if self.debug and r["rse"] in ["UK_QMUL"]:
+                    print  ("skipping", r["rse"], "for test")
+                    continue
                 print ("found a valid replica at",r["url"])
                 replica = r
                 break

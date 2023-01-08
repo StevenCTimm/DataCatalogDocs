@@ -47,6 +47,8 @@ def getListOfTypes(data,key,inlist):
     if not key in item:
       continue
     val = item[key]#.decode('UTF-8')
+    if val == None:
+        val = "Unknown"
     if key == "site":
       val = countrify(val)
     # try to figure out nodes without counting em all.
@@ -97,6 +99,8 @@ def getListOfDates(data,inlist):
     if not key in item:
       continue
     val = item[key][0:10]#.decode('UTF-8')
+    if val == None:
+        val = "Unknown"
     if val in l:
       continue
     l = np.append(l,val)

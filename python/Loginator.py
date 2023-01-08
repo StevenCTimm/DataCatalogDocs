@@ -143,7 +143,12 @@ class Loginator:
         info["job_id"] = self.getSafe(os.environ,"JOBSUBJOBID")
         info["job_node"] = self.getSafe(os.environ,"NODE_NAME")
         #info["job_node"] = os.getenv("HOST")
-        info["job_site"] = os.getenv("GLIDEIN_DUNESite")
+        if "GLIDEIN_DUNESite" in os.environ:
+            info["job_site"] = os.getenv("GLIDEIN_DUNESite")
+        elif "GLIDEIN_Entry_Name" in os.environ:
+            info["job_site"]=os.getenv("GLIDEIN_Entry_Name")
+        else:
+            info["job_site"]=self.getSafe(os.environ,"NODE_NAME")
         #info["POMSINFO"] = os.getenv("poms_data")  # need to parse this further
         return info
 
