@@ -153,6 +153,7 @@ def main():
     except:
         print ("project creation failed, give up")
         sys.exit(1)
+    print ("The project dictionary",proj_dict)
     dd_proj_id = proj_dict['project_id']
     print('Project ID:', dd_proj_id)
 
@@ -187,7 +188,7 @@ def main():
           f'-Oglobal.appName={args.appName} '\
           f'-Oglobal.appVersion={args.appVersion} '\
           f'-Oglobal.fcl={args.c} '\
-          f'-Oglobal.debug={args.debug}'
+          f'-Oglobal.debug={args.debug} '
 
     if args.blacklist:
       cs_blacklist = ','.join(args.blacklist)

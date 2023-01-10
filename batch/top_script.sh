@@ -1,4 +1,7 @@
-#!/bin/bash
+#!/bin/bash 
+
+echo "-----------starting topscript----------"
+echo " setup the dune code"
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
 export DATA_DISPATCHER_URL=https://metacat.fnal.gov:9443/dune/dd/data
@@ -6,7 +9,14 @@ export DATA_DISPATCHER_AUTH_URL=https://metacat.fnal.gov:8143/auth/dune
 export METACAT_AUTH_SERVER_URL=https://metacat.fnal.gov:8143/auth/dune
 export METACAT_SERVER_URL=https://metacat.fnal.gov:9443/dune_meta_demo/app
 export BEGIN_TIME=`date  +"%d-%b-%Y %H:%M:%S %Z"`
-
+echo "---------------------------"
+echo "what is in CONDOR_DIR_INPUT? "
+echo ${CONDOR_DIR_INPUT}
+ls ${CONDOR_DIR_INPUT}
+echo "---------------------------"
+echo "where am I"
+pwd
+echo "---------------------------"
 
 POSITIONAL_ARGS=()
 nskip=0
@@ -120,17 +130,23 @@ while [[ $# -gt 0 ]]; do
   esac
 done
 
+echo $POSITIONAL_ARGS
+
 echo $NAMESPACE
 
 logname=larwrapper-${NAMESPACE}_${PROCESS}_${CLUSTER}_`date +%F_%H_%M_%S`
+
 
 export PYTHONPATH=${CONDOR_DIR_INPUT}/larwrapper/python:${PYTHONPATH}
 
 ###Setting up dunesw/Data Dispatcher/MetaCat and running lar
 (
 
+
 echo " trying to run"
 setup dunesw ${APPVERSION} -q e20:prof;
+
+
 
 python -m venv venv
 source venv/bin/activate
@@ -207,8 +223,12 @@ export SCRATCH_DIR=/pnfs/dune/scratch/users
 setup ifdhc # add this back in
 export OUTDIR=${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}.${PROCESS}
 #ifdh mkdir_p ${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}
+
+
 echo "---------"
 echo "gfal?"
+export GFAL_PLUGIN_DIR=/usr/lib64/gfal2-plugins
+export GFAL_CONFIG_DIR=/etc/gfal2.d
 echo "which gfal-mkdir"
 which gfal-mkdir
 echo "---------"
