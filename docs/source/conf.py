@@ -31,12 +31,12 @@ print ("PATH",sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = 'LArWrapper'
-copyright = '2022, Oregon State University'
+project = 'LArWrapperExample'
+copyright = '2023, Fermi National Accelerator Laboratory'
 author = 'Heidi Schellman and Jacob Calcutt'
 
 # The full version, including alpha/beta/rc tags
-release = '0.1'
+release = '0.2'
 
 
 # -- General configuration ---------------------------------------------------
