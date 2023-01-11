@@ -4,7 +4,6 @@
 #
 # @section description_main A wrapper for lar that uses loginator to parse logs and finds unprocessed files.
 #
-# Copyright (c) 2022 Heidi Schellman, Oregon State University
 ##
 # @file LArWrapper.py
 

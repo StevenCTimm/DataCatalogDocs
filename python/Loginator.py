@@ -9,7 +9,6 @@ H. Schellman - 2022
 # A program for parsing art logs to put information into DUNE job monitoring.
 #
 #
-# Copyright (c) 2022 Heidi Schellman, Oregon State University
 ##
 # @file Loginator.py
 
