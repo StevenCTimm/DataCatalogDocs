@@ -17,3 +17,6 @@ metacat dataset create -f "files from dune:all where namespace='pdsp_mc_reco' an
 "files from dune:all with DUNE.campaign PDSPProd4a and code.data_tier 'full-reconstructed' ordered with limit 200"
 
 metacat dataset create -f "files from dune:all where core.run_type=protodune-sp and core.data_tier=full-reconstructed and core.data_stream=physics and DUNE.campaign=PDSPProd4 and core.first_event_number < 200 " schellma:EarlyPhysicsFiles2
+
+metacat query "files from dune:all where core.file_type=detector and core.run_type='protodune-sp' and \
+core.data_tier=full-reconstructed and core.data_stream=physics and core.first_event_number < 100"
