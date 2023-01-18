@@ -38,8 +38,6 @@ core.runs,array,run_number (integer part)
 core.runs_subruns,array,run_number (part past the decimal point)
 core.raw_timestamp,timestamp, 
 ,,
-,,
-,,
 Retention/access keys,, 
 ,,
 retention.status,string,status change ?
