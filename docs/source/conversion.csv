@@ -10,7 +10,7 @@ created_timestamp,timestamp,create_date
 size,int,file_size
 checksums,dictionary,check_sum (dict)
 retired,bool,new
-Retired_by,string,new
+retired_by,string,new
 retired_timestamp,timestamp,new
 updated_by,string,update_user
 updated_timestamp,timestamp,update_date
@@ -28,9 +28,9 @@ core.last_event_number,int,last_event
 core.start_rime,timestamp,start_time
 core.end_time,timestamp,end_time
 core.file_content_status,string,content_status 
-core.data_stream,text,data_stream
-core.data_tier,text,data_tier
-core.events,,NA
+core.data_stream,string,data_stream
+core.data_tier,string,data_tier
+core.events,array,new
 core.file_type,text,file_type
 core.file_format,text,file_format
 core.run_type,text,run_type
@@ -40,12 +40,10 @@ core.raw_timestamp,timestamp,
 ,,
 Retention/access keys,, 
 ,,
-retention.status,string,status change ?
+retention.status,string, 
 retention.retirement_date,timestamp,
 retention.class,string,
 ,,
 Additional attributes,,
 ,,
-<category>.<name>.<subname> … ,string,<category>.<name>
-,,
-,,
+<category>.<name>.<subname> … ,"string,int, bool, ….",<category>.<name>
