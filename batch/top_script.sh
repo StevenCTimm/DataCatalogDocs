@@ -1,7 +1,8 @@
-#!/bin/bash 
+#!/bin/bash
 
 echo "-----------starting topscript----------"
 echo " setup the dune code"
+
 source /cvmfs/dune.opensciencegrid.org/products/dune/setup_dune.sh
 
 export DATA_DISPATCHER_URL=https://metacat.fnal.gov:9443/dune/dd/data
