@@ -171,24 +171,45 @@ def main():
     njobs = [10000]*int(args.njobs/10000) + [args.njobs%10000]
   else:
     njobs = [args.njobs]
+  config = "ddconfig2.cfg"
+  if "HOSTNAME" in os.environ and os.environ["HOSTNAME"] not in ["dunegpvm14.fnal.gov","dunegpvm15.fnal.gov"]:
+      config = "ddconfig.cfg"
 
   print(njobs)
   count = 0
   for nj in njobs:
-    cmd =  'fife_launch -c $TESTME/batch/ddconfig.cfg ' \
-          f'-Oglobal.load_limit={args.load_limit} ' \
-          f'-Oglobal.projectID={dd_proj_id} ' \
-          f'-Oglobal.n={args.n} ' \
-          f'-Oglobal.output={args.output} ' \
-          f'-Oglobal.output_dataset={args.output_dataset} ' \
-          f'-Oglobal.output_namespace={args.output_namespace} ' \
-          f'-Osubmit.N={nj} ' \
-          f'-Oglobal.metacat_user={args.metacat_user} '\
-          f'-Oglobal.appFamily={args.appFamily} '\
-          f'-Oglobal.appName={args.appName} '\
-          f'-Oglobal.appVersion={args.appVersion} '\
-          f'-Oglobal.fcl={args.c} '\
-          f'-Oglobal.debug={args.debug} '
+    if "HOSTNAME" in os.environ and os.environ["HOSTNAME"] not in ["dunegpvm14.fnal.gov","dunegpvm15.fnal.gov"]:
+
+        cmd =  'fife_launch -c $TESTME/batch/ddconfig.cfg ' \
+              f'-Oglobal.load_limit={args.load_limit} ' \
+              f'-Oglobal.projectID={dd_proj_id} ' \
+              f'-Oglobal.n={args.n} ' \
+              f'-Oglobal.output={args.output} ' \
+              f'-Oglobal.output_dataset={args.output_dataset} ' \
+              f'-Oglobal.output_namespace={args.output_namespace} ' \
+              f'-Osubmit.N={nj} ' \
+              f'-Oglobal.metacat_user={args.metacat_user} '\
+              f'-Oglobal.appFamily={args.appFamily} '\
+              f'-Oglobal.appName={args.appName} '\
+              f'-Oglobal.appVersion={args.appVersion} '\
+              f'-Oglobal.fcl={args.c} '\
+              f'-Oglobal.debug={args.debug} '
+    else:
+        cmd =  'fife_launch -c $TESTME/batch/ddconfig2.cfg ' \
+              f'-Oglobal.load_limit={args.load_limit} ' \
+              f'-Oglobal.projectID={dd_proj_id} ' \
+              f'-Oglobal.n={args.n} ' \
+              f'-Oglobal.output={args.output} ' \
+              f'-Oglobal.output_dataset={args.output_dataset} ' \
+              f'-Oglobal.output_namespace={args.output_namespace} ' \
+              f'-Osubmit.N={nj} ' \
+              f'-Oglobal.metacat_user={args.metacat_user} '\
+              f'-Oglobal.appFamily={args.appFamily} '\
+              f'-Oglobal.appName={args.appName} '\
+              f'-Oglobal.appVersion={args.appVersion} '\
+              f'-Oglobal.fcl={args.c} '\
+              f'-Oglobal.debug={args.debug} '
+
 
     if args.blacklist:
       cs_blacklist = ','.join(args.blacklist)
