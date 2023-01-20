@@ -171,9 +171,7 @@ def main():
     njobs = [10000]*int(args.njobs/10000) + [args.njobs%10000]
   else:
     njobs = [args.njobs]
-  config = "ddconfig2.cfg"
-  if "HOSTNAME" in os.environ and os.environ["HOSTNAME"] not in ["dunegpvm14.fnal.gov","dunegpvm15.fnal.gov"]:
-      config = "ddconfig.cfg"
+  
 
   print(njobs)
   count = 0
