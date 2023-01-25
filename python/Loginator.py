@@ -424,7 +424,10 @@ def test():
     """ test the Loginator """
 
     parse = Loginator(logname=sys.argv[1],debug=True)
-
+    if len(sys.argv)>2:
+        namespace = sys.argv[2]
+    else:
+        namespace = "pdsp_det_reco"
     #print ("looking at",sys.argv[1])
     parse.readme()
     parse.addsysinfo()
@@ -432,10 +435,11 @@ def test():
     if "SAM_EXPERIMENT" in os.environ:
         parse.addsaminfo()
     else:
-        parse.addmetacatinfo(namespace="pdsp_det_reco")
+        parse.addmetacatinfo(namespace)
             #parse.addmetacatinfo("dc4-hd-protodune") # argument is there for testing when you don't have replica list.
     parse.writeme()
 
 
 if __name__ == '__main__':
+    print (" Loginator needs to know the namespace for the input files as arg 2")
     test()

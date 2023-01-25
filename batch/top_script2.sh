@@ -1,4 +1,4 @@
-#!/bin/bash -vx
+#!/bin/bash
 
 echo "-----------starting topscript----------"
 echo " setup the dune code"
@@ -134,6 +134,8 @@ done
 echo $POSITIONAL_ARGS
 
 echo $NAMESPACE
+
+export IFDH_DEBUG=0
 
 logname=larwrapper-${NAMESPACE}_${PROCESS}_${CLUSTER}_`date +%F_%H_%M_%S`
 
