@@ -45,4 +45,4 @@ retention.class,string,
 ,,
 Additional attributes,,
 ,,
-<category>.<name>.<subname> … ,"string,int, bool, ….",<category>.<name>
+<category>.<subcategory>.<name> … ,"string,int, bool, ….",<category>.<name>
