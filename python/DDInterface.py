@@ -198,7 +198,11 @@ class DDInterface:
     print ("ask for next file")
     if "GLIDEIN_DUNESite" in os.environ:
         site = os.getenv("GLIDEIN_DUNESite")
+        if site == "US_FermiGrid":
+            site = "US_FNAL"
     elif "HOSTNAME" in os.environ and "dunegpvm" in os.getenv("HOSTNAME"):
+        site = "US_FNAL"
+    elif site == "US_FermiGrid":
         site = "US_FNAL"
     else:
         site = None
