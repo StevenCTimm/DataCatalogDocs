@@ -400,7 +400,16 @@ class DDInterface:
         #Get the last replica
         #replica = replicas[len(replicas)-1]
         replica = None
+        pref,index = 1000,0
+        count = 0
         for r in replicas:
+
+            if r["preference"] < pref:
+                pref,index =r["preference"],count
+                print ("found a better rse",r["rse"],pref,index,count)
+            count +=1
+        for r in [replicas[index]]:
+
             if "url" in r and "root:" in r["url"]:
                 if self.debug and r["rse"] in ["UK_QMUL"]:
                     print  ("skipping", r["rse"], "for test")
