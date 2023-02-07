@@ -1,4 +1,4 @@
-﻿Metacat,tyoe,Samweb
+Metacat,type,Samweb
 ,,
 Basics,,
 ,,
@@ -24,7 +24,7 @@ core.application.name,string,app_name
 core.event_count,int,event_count
 core.first_event_number,int,first_event
 core.last_event_number,int,last_event
-core.start_rime,timestamp,start_time
+core.start_time,timestamp,start_time
 core.end_time,timestamp,end_time
 core.file_content_status,string,content_status 
 core.data_stream,string,data_stream
@@ -39,8 +39,7 @@ core.raw_timestamp,timestamp,
 ,,
 Retention/access keys,, 
 ,,
-retention.status,string, 
-retention.retirement_date,timestamp,
+retention.status,string,
 retention.class,string,
 ,,
 Additional attributes,,

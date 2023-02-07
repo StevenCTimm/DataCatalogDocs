@@ -20,3 +20,9 @@ metacat dataset create -f "files from dune:all where core.run_type=protodune-sp 
 
 metacat query "files from dune:all where core.file_type=detector and core.run_type='protodune-sp' and \
 core.data_tier=full-reconstructed and core.data_stream=physics and core.first_event_number < 100"
+
+---
+
+metacat query "files from dune:all where DUNE.campaign=PDSPProd4  and core.run_type='protodune-sp' and core.data_tier='full-reconstructed' and  core.first_event_number <  1000 and core.file_type=detector" | grep -c root
+
+metacat query "files from dune:all where DUNE.campaign=PDSPProd4a  and core.run_type='protodune-sp' and core.data_tier='full-reconstructed' and core.first_event_number=1001 and core.file_type=mc" | grep -c root

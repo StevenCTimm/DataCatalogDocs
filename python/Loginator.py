@@ -84,6 +84,7 @@ class Loginator:
             "duration":None,  # (difference between end and start)
             "path":None,
             "rse":None,
+            "preference":None,
             # file attributes from metacat
             "file_size":None,  #
             "file_type":None,  #
@@ -331,11 +332,18 @@ class Loginator:
                     print (" could not set namespace for",f)
                     continue
             if self.debug: print ("get metadata for ", f,namespace)
-            meta = mc_client.get_file(name=f,namespace=namespace)
+            try:
+                meta = mc_client.get_file(name=f,namespace=namespace)
+                
+            except:
+                print ("metacat access failure for file",f)
+                self.outobject[f]["metacat_status"]="failed"
+                meta = None
             if self.debug: print ("metacat answer",f,namespace)
             if meta == None:
                 print ("no metadata for",f)
                 continue
+            self.outobject[f]["metacat_status"]="success"
             self.outobject[f]["delivery_method"]="dd"
             for item in ["data_tier","file_type","data_stream","run_type","event_count","file_format"]:
                 if "core."+item in meta["metadata"].keys():
@@ -378,6 +386,8 @@ class Loginator:
                         self.outobject[f]["rse"] = r["rse"]
                     if "namespace" in r:
                         self.outobject[f]["namespace"] = r["namespace"]
+                    if "preference" in r:
+                        self.outobject[f]["preference"] = r["preference"]
                 if self.debug: print (self.outobject[f])
             if not found:
                 print (r,"appears in replicas but not in Lar Log, need to mark as unused")

@@ -224,7 +224,9 @@ echo " make output directories"
 export IFDH_DEBUG=0
 export SCRATCH_DIR=/pnfs/dune/scratch/users
 setup ifdhc # add this back in
-export OUTDIR=${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}.${PROCESS}
+ifdh mkdir_p ${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}
+ifdh mkdir_p ${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}/${PROCESS}
+export OUTDIR=${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}/${PROCESS}
 #ifdh mkdir_p ${SCRATCH_DIR}/${USER}/ddtest/${PROJECTID}
 
 

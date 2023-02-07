@@ -18,7 +18,29 @@ import numpy as np
 from datetime import date,datetime,timedelta
 from dateutil import parser
 
+def calculate(r=None):
+    # if  "job_cpu_time" in r and "job_wall_time" in r and float(r["job_wall_time"]) > 0:
+    #     r["job_efficiency"] = float(r["job_cpu_time"])/float(r["job_wall_time"])
+    # else:
+    #     r["job_efficiency"] = -.1
+    # if float(r["event_count"]) > 0 :
+    #     r["time_per_event"] = float(r["duration"])/float(r["event_count"])
+    if r == None: return
+    for x in ["file_size","art_wall_time_per_event","art_total_events","event_count"]:
+        if x not in r:
+            print (x, " not available")
+            return None
+        if r[x] == None:
+            print (x," is None in ",r["file_name"])
+            return None
+    walltimeperevent = r["art_wall_time_per_event"]
+    sizeperevent = r["file_size"]*r["art_total_events"]/r["event_count"]
+    rate = sizeperevent/walltimeperevent
+    r["rate"] = rate*0.000001
+    return r
+
 def movetofront(mylist,key):
+    if key not in mylist: return mylist
     mylist.remove(key)
     mylist.insert(0, key)
     return mylist
