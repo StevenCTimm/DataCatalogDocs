@@ -18,12 +18,12 @@ sys.path.insert(0, os.path.abspath('.'))
 # If extensions (or modules to document with autodoc) are in another directory,
 # add these directories to sys.path here.
 import pathlib
-top = pathlib.Path(__file__).parents[2].resolve().as_posix()
-print("top",top)
-py = os.path.join(top,"python")
-sys.path.insert(0,top)
-sys.path.insert(0,py)
-sys.path.insert(0,os.path.join(top,"tests"))
+#top = pathlib.Path(__file__).parents[2].resolve().as_posix()
+#print("top",top)
+#py = os.path.join(top,"python")
+#sys.path.insert(0,top)
+#sys.path.insert(0,py)
+#sys.path.insert(0,os.path.join(top,"tests"))
 
 
 
@@ -31,7 +31,7 @@ print ("PATH",sys.path)
 
 # -- Project information -----------------------------------------------------
 
-project = 'LArWrapperExample'
+project = 'DataCatalogDocs'
 copyright = '2023, Fermi National Accelerator Laboratory'
 author = 'Heidi Schellman and Jacob Calcutt'
 
