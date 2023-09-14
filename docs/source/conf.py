@@ -52,11 +52,14 @@ extensions = [
     'sphinx.ext.napoleon',
     'sphinx.ext.autosectionlabel',
     'sphinx.ext.viewcode',
-    'sphinx.ext.inheritance_diagram'
+    'sphinx.ext.inheritance_diagram',
+    'sphinx_sitemap',
     #'sphinxcontrib.programoutput',  # not available to github
 ]
 
 autoclass_content = "both"  # from ivmfnal
+
+html_baseurl = 'https://dune.github.io/DataCatalogDocs/'
 
 autosectionlabel_prefix_document = True
 
