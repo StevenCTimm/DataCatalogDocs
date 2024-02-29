@@ -4,6 +4,8 @@ DataCatalogDocs
 
 Describe DUNE Data Catalogs and the samweb->metacat/rucio transition
 
+https://dune.github.io/DataCatalogDocs/
+
 Copyright © 2023 FERMI NATIONAL ACCELERATOR LABORATORY
 
 This repository, and all software contained within, is licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
