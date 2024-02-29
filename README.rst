@@ -4,7 +4,7 @@ DataCatalogDocs
 
 Describe DUNE Data Catalogs and the samweb->metacat/rucio transition
 
-https://dune.github.io/DataCatalogDocs/
+    https://dune.github.io/DataCatalogDocs/
 
 Copyright © 2023 FERMI NATIONAL ACCELERATOR LABORATORY
 
