@@ -31,11 +31,6 @@
         "core.first_event_number": 76801,
         "core.group": "dune",
         "core.last_event_number": 76900,
-        "core.parents": [
-            {
-                "file_name": "fardet-hd:nu_dune10kt_1x2x6_1427_768_20230827T213411Z_gen_g4_detsim_hitreco.root"
-            }
-        ],
         "core.run_type": "fardet-hd",
         "core.runs": [
             1427
